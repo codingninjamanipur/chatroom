@@ -5,12 +5,12 @@ import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 // import { async } from '@firebase/util';
 import { doc, setDoc } from "firebase/firestore";
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
     const [err, setErr] = useState(false);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     
 
     const handleSubmit = async (e) => {
@@ -26,7 +26,7 @@ const Register = () => {
             const storageRef = ref(storage, displayName);
 
             const uploadTask = uploadBytesResumable(storageRef, file);
-
+ 
             // Register three observers:
             // 1. 'state_changed' observer, called any time the state changes
             // 2. Error observer, called on failure
@@ -40,21 +40,36 @@ const Register = () => {
                     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                     getDownloadURL(uploadTask.snapshot.ref).then( async(downloadURL) => {
                         
+                        // for authantication ====================>
+
                         await updateProfile(res.user, {
                             displayName,
                             photoURL: downloadURL,
                         });
+
+                        // storing data after authantcation =====================>
+
                         await setDoc(doc(db, "users", res.user.uid), {
                             uid: res.user.uid,
                             displayName,
                             email,
                             photoURL: downloadURL, 
                         });
-                        // await setDoc(doc(db, "userChat", res.user.uid), {});
-                        // navigate("/")
-                        // navigate("/")
+
+                        // enable other user by the registered user =============>
+
+                        await setDoc(doc(db, "userChat", res.user.uid), {
+                            uid: res.user.uid,
+                            displayName,
+                            email,
+                            photoURL: downloadURL,
+                        });
+                        
+                        
+                            
                         
                     });
+                    navigate("/login-page");
                 }
             );
             

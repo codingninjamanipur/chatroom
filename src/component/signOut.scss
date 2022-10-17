@@ -1,10 +1,23 @@
 .signOutButton{
-    align-items: left;
+    margin-left: 218px;
     margin-top: 10px;
+    
     button{
         cursor: pointer;
         background: transparent;
         border: none;
         border-bottom: 1px gray;
+        box-shadow: inset 1px 1px 1px 1px;
+        width: 80px;
+        height: 30px;
+        border-radius: 10px;
+        color: rgb(127, 139, 135);
+        
+        
+    }
+    :active{
+        color: green;
+        width: 76px;
+        
     }
 }
