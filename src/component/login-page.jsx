@@ -1,37 +1,18 @@
-import React, { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import './login-page.css'
-import { auth } from '../firebase';
+import React from 'react'
+import {  Link } from 'react-router-dom';
+// import { signInWithEmailAndPassword } from "firebase/auth";
+import './login-page.css';
+// import { auth } from '../firebase';
 const Login = () => {
 
-    const [err, setErr] = useState(false);
-    const navigate = useNavigate();
     
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-       
-        const email = e.target[0].value;
-        const password = e.target[1].value;
-
-        try {
-            await signInWithEmailAndPassword(auth, email, password)
-            navigate("/login-page")
-            
-        }
-        catch (err) {
-            setErr(true);
-        }
-
-    };
     
   return (
     <div className='logInContainer'>
         <h1>LogIn here</h1>
         <div className="cardContainer">
             <div className="cardItems">
-                <form action="" className='form' onSubmit={handleSubmit}>
+                <form action="" className='form' >
                     <label htmlFor="userName" className='userName'>Email ID:</label> <br />
                     <input type="text" id='userName' className='userInput'/><br />
                     <label htmlFor="pasword"className='userPassword'>Password:</label> <br />
@@ -43,7 +24,7 @@ const Login = () => {
                     <button className='button'>
                         Sign In
                     </button>
-                    {err && <span>Something went wrong</span>}
+                    {/* {err && <span>Something went wrong</span>} */}
                 </form>
                 
             </div>

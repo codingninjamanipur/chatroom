@@ -8,8 +8,8 @@ function DisplayMgs() {
     <div className="displayMgs">
         <MgsHeader />
         <div className="messageContainerBackground">
-            <Messages />
-            <InputMgses />
+          <Messages />
+          <InputMgses />
         </div>
         
     </div>
