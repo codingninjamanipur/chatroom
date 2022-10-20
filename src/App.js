@@ -13,14 +13,14 @@ import { AuthContext } from './context/authContext';
 function App() {
   const {currentUser} = useContext(AuthContext)
 
-  const ProtectedRoute = (props) => {
-
+  const ProtectedRoute = ({children}) => {
 
     if (!currentUser) {
       return <Navigate to = "/login-page"/>
     }
-    else
-      return <>{ props.children}</>
+
+    return children 
+    
   }
   
   return (

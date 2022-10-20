@@ -89,7 +89,7 @@ const Register = () => {
                     <input type="text" className='nameInput'/><br />
                     <label htmlFor="email" className='userEmail'>Email Id:</label> <br />
                     <input type="email" className='emailInput'/><br />
-                    <label htmlFor="pasword"className='userPassword'>Password:</label> <br />
+                    <label htmlFor="password"className='userPassword'>Password:</label> <br />
                     <input type="password" className='passwordInput'/>
                     <input type="file" className='fileInput' />
                     <button className='button'>
